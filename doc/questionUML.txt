@@ -1,2 +1,33 @@
 Ecrire ici votre réponse à la question UML.
 
+Figure 2 (Le diagramme par composition)
+ +solide
+    Avantages :
+
+        flexible :  Un événement simple peut devenir répétitif juste en lui ajoutant une "Répétition", sans devoir recréer l'objet.
+
+        modulaire :  Si on veut modifier comment fonctionne la fin d'un événement, on ne touche pas au reste du code.
+
+        evolutif : C'est plus facile d'ajouter de nouvelles règles  plus tard (exmpl "tous les deux mardis") sans casser l'architecture existante.
+
+    Inconvénients :
+
+        plus complexe à coder : Il faut gérer plusieurs objets qui se parlent entre eux (l'événement sa répétition sa terminaison).
+
+        Gestion des vides : Il faut tout le temps vérifier si la répétition existe  avant de faire des calculs donc cela rajoute des étapes.
+
+Figure 3 (Le diagramme par héritage)
+
+ moins bien en pratique.
+
+    Avantages :
+
+        Logique simple à comprendre : L'idée qu'un "événement répétitif" est une sorte d'"événement" est très intuitive pour l'esprit humain. On voit tout de suite qui est quoi.
+
+        clair : Quand on manipule un objet FixedTerminationEvent, on est sûr à 100% qu'il a une date de fin. Pas besoin de vérifier si c'est vide ou pas.
+
+    Inconvénients :
+
+        Trop rigide : Une fois qu'un événement est créé, son type est figé. Impossible de transformer un rdv unique en rdv hebdomadaire sans supprimer l'ancien et en créer un nouveau.
+
+        Multiplication des classes : Si on veut créer plein de variantes (infini, fini par date, fini par nombre, répétition complexe), on va se retrouver avec bcp de sous classes, ce qui devient difficile à maintenir.

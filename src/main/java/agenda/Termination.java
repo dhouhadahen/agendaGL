@@ -6,48 +6,30 @@ import java.time.temporal.Temporal;
 
 public class Termination {
 
+    private final LocalDate start;
+    private final ChronoUnit frequency;
+    private final LocalDate terminationDate;
+
     public LocalDate terminationDateInclusive() {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        return terminationDate;
     }
 
     public long numberOfOccurrences() {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        // Formule : Différence entre début et fin + 1 (pour inclure le premier jour)
+        return frequency.between(start, terminationDate) + 1;
     }
 
-
-    /**
-     * Constructs a  termination at a given date
-     * @param start the start time of this event
-     * @param frequency one of :
-     * <UL>
-     * <LI>ChronoUnit.DAYS for daily repetitions</LI>
-     * <LI>ChronoUnit.WEEKS for weekly repetitions</LI>
-     * <LI>ChronoUnit.MONTHS for monthly repetitions</LI>
-     * </UL>
-     * @param terminationInclusive the date when this event ends
-     * @see ChronoUnit#between(Temporal, Temporal)
-     */
     public Termination(LocalDate start, ChronoUnit frequency, LocalDate terminationInclusive) {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        this.start = start;
+        this.frequency = frequency;
+        this.terminationDate = terminationInclusive;
     }
 
-    /**
-     * Constructs a fixed termination event ending after a number of iterations
-     * @param start the start time of this event
-     * @param frequency one of :
-     * <UL>
-     * <LI>ChronoUnit.DAYS for daily repetitions</LI>
-     * <LI>ChronoUnit.WEEKS for weekly repetitions</LI>
-     * <LI>ChronoUnit.MONTHS for monthly repetitions</LI>
-     * </UL>
-     * @param numberOfOccurrences the number of occurrences of this repetitive event
-     */
     public Termination(LocalDate start, ChronoUnit frequency, long numberOfOccurrences) {
-        // TODO : implémenter cette méthode
-        throw new UnsupportedOperationException("Pas encore implémenté");
+        this.start = start;
+        this.frequency = frequency;
+        // Si on a 1 occurrence, la date de fin est la date de début.
+        // Si on a 2 occurrences, c'est début + 1 unité. Donc (n - 1).
+        this.terminationDate = start.plus(numberOfOccurrences - 1, frequency);
     }
-
 }
